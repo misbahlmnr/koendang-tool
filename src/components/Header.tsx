@@ -247,14 +247,14 @@ const NAV_ITEMS: Array<NavItem> = [
     label: "Gallery",
     children: [
       {
+        label: "Convert Tool",
+        subLabel: "Up-and-coming Designers",
+        href: "#convert-tool",
+      },
+      {
         label: "Generate style PG2",
         subLabel: "Trending Design to inspire you",
         href: "/#generate-pg2",
-      },
-      {
-        label: "New & Noteworthy",
-        subLabel: "Up-and-coming Designers",
-        href: "#",
       },
     ],
   },

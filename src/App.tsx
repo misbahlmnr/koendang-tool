@@ -1,4 +1,4 @@
-// import ConvertTool from "./components/ComvertTool";
+import ConvertTool from "./components/ComvertTool";
 import GalleryTool from "./components/GalleryTool";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -11,9 +11,9 @@ const App = () => {
         <Hero />
       </section>
 
-      {/* <section id="convert-tool">
+      <section id="convert-tool">
         <ConvertTool />
-      </section> */}
+      </section>
 
       <section id="generate-pg2">
         <GalleryTool />
