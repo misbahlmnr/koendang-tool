@@ -1,19 +1,65 @@
-import { Heading, Stack, Text } from "@chakra-ui/react";
+import { Card, Grid, Heading, Stack, Text } from "@chakra-ui/react";
 import CodePreview from "./CodePreview";
 
 const ConvertTool = () => {
   const codeConvertVideo = `ffmpeg -y -i "" -movflags faststart test.mp4`;
   const codeConvertImg = `mogrify -auto-orient -resize 60% -quality 95% -format webp *.jpg`;
+  const mediaQuery = `"@media screen and (max-width: 576px)":{}`;
+  const objectPositionCommand = `"objectPosition":"50% 50%"`;
   return (
     <Stack>
-      <Heading color={"gray.700"}>Convert Tool</Heading>
-      <Text color={"gray.500"}>For resize your image or mp4</Text>
+      <Heading
+        fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
+        fontFamily={"Karla"}
+      >
+        <Text as={"span"} position={"relative"}>
+          Command
+        </Text>{" "}
+        <Text color={"blue.400"} as={"span"}>
+          Tools
+        </Text>{" "}
+      </Heading>
+      <Text color={"gray.500"} fontSize={{ base: "md", lg: "lg" }}>
+        Untuk melakukan resize poto dan video dengan command dibawah, anda
+        diharapkan sudah menginstall tools ffmpeg & image magick.
+      </Text>
 
-      <Text mt={5}>Resize your video</Text>
-      <CodePreview code={codeConvertVideo} language="json" />
+      <Grid
+        templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
+        gap={5}
+      >
+        <Card flex={1} bgColor={"transparent"}>
+          <CodePreview
+            code={codeConvertVideo}
+            codeName="Resize your video with ffmpeg"
+            language="bash"
+          />
+        </Card>
 
-      <Text>Convert & Resize your image</Text>
-      <CodePreview code={codeConvertImg} language="json" />
+        <Card flex={1} bgColor={"transparent"}>
+          <CodePreview
+            code={codeConvertImg}
+            codeName="Convert & Resize your image with image magick"
+            language="bash"
+          />
+        </Card>
+
+        <Card flex={1} bgColor={"transparent"}>
+          <CodePreview
+            code={mediaQuery}
+            codeName="Media Query"
+            language="bash"
+          />
+        </Card>
+
+        <Card flex={1} bgColor={"transparent"}>
+          <CodePreview
+            code={objectPositionCommand}
+            codeName="Object position image command"
+            language="bash"
+          />
+        </Card>
+      </Grid>
     </Stack>
   );
 };

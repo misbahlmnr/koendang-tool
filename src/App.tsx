@@ -1,13 +1,11 @@
-import ConvertTool from "./components/ComvertTool";
-import GalleryTool from "./components/GalleryTool";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
+import ConvertTool from "@/components/ComvertTool";
+import GalleryTool from "@/components/GalleryTool";
+import Hero from "@/components/Hero";
 
 const App = () => {
   return (
     <>
-      <Header />
-      <section id="hero">
+      <section>
         <Hero />
       </section>
 

@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   Button,
   Flex,
@@ -56,7 +57,7 @@ export default function GalleryTool() {
           .map((val) => {
             const area = `image${areaIndex}`;
             areaIndex++;
-            if (parseInt(val, 10) === 1) {
+            if (parseInt(val, 10) === 6) {
               return Array(6).fill(area).join(" ");
             } else {
               return Array(parseInt(val, 10)).fill(area).join(" ");
@@ -78,6 +79,12 @@ export default function GalleryTool() {
     setGridStyle(gridConfig);
   };
 
+  const handleResetForm = () => {
+    setRowCount("");
+    setFormAreas([]);
+    formRefs.current = [];
+  };
+
   useEffect(() => {
     setGridStyle(defaultDesignPg2);
   }, []);
@@ -91,7 +98,10 @@ export default function GalleryTool() {
     >
       <Box>
         <Stack spacing={6} w={"full"} maxW={"lg"}>
-          <Heading fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}>
+          <Heading
+            fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}
+            fontFamily={"Karla"}
+          >
             <Text as={"span"} position={"relative"}>
               Generate
             </Text>
@@ -101,8 +111,11 @@ export default function GalleryTool() {
             </Text>{" "}
           </Heading>
           <Text fontSize={{ base: "md", lg: "lg" }} color={"gray.500"}>
-            The project board is an exclusive resource for contract work. It's
-            perfect for freelancers, agencies, and moonlighters.
+            Generate design PG2 kamu dengan mudah. Cukup masukan format CSS Grid
+            Area dengan column 6 dan row bebas. Jika ingin full 1 gambar dalam 1
+            baris bisa masukan <Badge colorScheme="red">6</Badge> jika mau 1
+            baris 2 gambar masukan <Badge colorScheme="red">3,3</Badge> Dan jika
+            mau 1 baris 3 gambar masukan <Badge colorScheme="red">2,2,2</Badge>
           </Text>
         </Stack>
         <form
@@ -113,29 +126,41 @@ export default function GalleryTool() {
             width: "100%",
           }}
         >
-          <Stack maxH="300px" overflow="auto" mb="5" p={2}>
-            <FormControl>
-              <FormLabel>Row</FormLabel>
-              <Flex alignItems="center" gap="3">
-                <Input
-                  type="text"
-                  placeholder="masukan row pg2"
-                  value={rowCount}
-                  onChange={(e) => setRowCount(e.target.value)}
-                />
-                <Button onClick={generateFormAreas}>Generate</Button>
-              </Flex>
-            </FormControl>
+          <Stack maxH="300px" overflow="auto" mb="5" mt={5}>
+            {formAreas.length === 0 && (
+              <FormControl>
+                <FormLabel>Row</FormLabel>
+                <Flex alignItems="center" gap="3">
+                  <Input
+                    type="text"
+                    placeholder="masukan row pg2"
+                    value={rowCount}
+                    onChange={(e) => setRowCount(e.target.value)}
+                  />
+                  <Button onClick={generateFormAreas} colorScheme="blue">
+                    Generate
+                  </Button>
+                </Flex>
+              </FormControl>
+            )}
             {formAreas.map((areas) => areas)}
           </Stack>
           {formAreas.length !== 0 && (
-            <Button onClick={generateDesignPg2}>Generate design PG2</Button>
+            <>
+              <Button onClick={generateDesignPg2} colorScheme="blue">
+                Generate design PG2
+              </Button>
+
+              <Button ml={5} colorScheme="red" onClick={handleResetForm}>
+                Reset
+              </Button>
+            </>
           )}
         </form>
       </Box>
 
       <Box w="700px" h="300px" rounded="xl">
-        <CodePreview code={gridStyle} language="json" />
+        <CodePreview code={gridStyle} codeName="Design PG2" language="json" />
       </Box>
     </Flex>
   );
