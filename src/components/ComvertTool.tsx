@@ -5,7 +5,7 @@ const ConvertTool = () => {
   const codeConvertVideo = `ffmpeg -y -i "" -movflags faststart test.mp4`;
   const codeConvertImg = `mogrify -auto-orient -resize 60% -quality 95% -format webp *.jpg`;
   const mediaQuery = `"@media screen and (max-width: 576px)":{}`;
-  const objectPositionCommand = `"objectPosition":"50% 50%"`;
+  const objectPositionCommand = `{"objectPosition":"50% 50%"}`;
   return (
     <Stack>
       <Heading
@@ -27,6 +27,7 @@ const ConvertTool = () => {
       <Grid
         templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
         gap={5}
+        mt={5}
       >
         <Card flex={1} bgColor={"transparent"}>
           <CodePreview
